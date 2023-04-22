@@ -1,64 +1,49 @@
 "use strict";
 
-let numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?"," ");
-while (numberOfFilms == "" || numberOfFilms == null || numberOfFilms.length > 50) {
-    numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?"," ");
+// Функции
+
+// Function Declaration
+
+let num = 20;
+
+function showFirstMessage() {
+    console.log("Hello World!");
 }
 
-const personalMovieDB = {
-    count: numberOfFilms,
-    movies: {},
-    actors: {},
-    genres: [],
-    privat: false
+showFirstMessage();
+
+function getSomeText(text) {
+    console.log(text);
+}
+getSomeText("Hello!");
+
+function addNum () {
+    let num = 10;
+    console.log(num);
+}
+console.log(num);
+addNum();
+
+function calc(a, b) {
+    return(a + b);
+}
+console.log(calc(4, 3));
+
+function ret() {
+    let num = 50;
+    return num;
+}
+const anotherNum = ret();
+console.log(anotherNum);
+
+// Function Expression
+
+const logger = function () {
+    console.log("World!");
 };
-/* for (let i = 0; i < 2; i++) {
-    let a = prompt("Один из просмотренных фильмов?", "");
-    while (a == "" || a == null || a.length > 50){
-        a = prompt("Один из просмотренных фильмов?", "");
-    }
-    let b = prompt("На сколько оцените его?", "");
-    while (b == "" || b == null || b.length > 50){
-        b = prompt("На сколько оцените его?", "");
-    }
-    personalMovieDB.movies[a] = b;
-} */
+logger();
 
-if (personalMovieDB.count < 10) {
-    console.log("Просмотрено довольно мало фильмов");
-} else if (personalMovieDB.count < 30 && personalMovieDB.count >= 10) {
-    console.log("Вы классический зритель");
-} else if (personalMovieDB.count >= 30) {
-    console.log("Вы киноман");
-} else {
-    console.log("Ошибка");
-}
+// Стрелочная функция
 
-
-/* let i = 0;
-do {
-    let a = prompt("Один из просмотренных фильмов?", "");
-    let b = prompt("На сколько оцените его?", "");
-    if (a == null || a == "" || a.length > 50 || b == null || b == "" || b.length > 50) {
-        i--;
-    } else{
-        personalMovieDB.movies[a] = b;
-    }
-    i++;
-}
-while (i < 2); */
-
-let i = 0;
-while (i < 2) {
-    let a = prompt("Один из просмотренных фильмов?", "");
-    let b = prompt("На сколько оцените его?", "");
-    if (a == null || a == "" || a.length > 50 || b == null || b == "" || b.length > 50) {
-        i--;
-    } else{
-        personalMovieDB.movies[a] = b;
-    }
-    i++;
-}
-
-
-console.log(personalMovieDB);
+const calc = (a, b) => {return a + b};
+console.log(calc(3, 10));
