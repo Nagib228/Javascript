@@ -1,88 +1,63 @@
 "use strict";
 
-// Функции
+let numberOfFilms;
 
-// Function Declaration
-
-/* let num = 20;
-
-function showFirstMessage() {
-    console.log("Hello World!");
+function start() {
+    numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?"," ");
+    while (numberOfFilms == "" || numberOfFilms == null || isNaN(numberOfFilms)){
+        numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?"," ");
+    }
 }
+start();
 
-showFirstMessage();
-
-function getSomeText(text) {
-    console.log(text);
-}
-getSomeText("Hello!");
-
-function addNum () {
-    let num = 10;
-    console.log(num);
-}
-console.log(num);
-addNum();
-
-function calc(a, b) {
-    return(a + b);
-}
-console.log(calc(4, 3));
-
-function ret() {
-    let num = 50;
-    return num;
-}
-const anotherNum = ret();
-console.log(anotherNum); */
-
-// Function Expression
-
-/* const logger = function () {
-    console.log("World!");
+const personalMovieDB = {
+    count: numberOfFilms,
+    movies: {},
+    actors: {},
+    genres: [],
+    privat: false
 };
-logger(); */
-
-// Стрелочная функция
-
-/* const calc = (a, b) => {return a + b};
-console.log(calc(3, 10));
-
- */
 
 
-// Методы и свойства
-// Свойтство
+function rememberMyFilms() {
+    for (let i = 0; i < 2; i++) {
+        let a = prompt("Один из просмотренных фильмов?", "");
+        while (a == "" || a == null || a.length > 50){
+            a = prompt("Один из просмотренных фильмов?", "");
+        }
+        let b = prompt("На сколько оцените его?", "");
+        while (b == "" || b == null || b.length > 50){
+            b = prompt("На сколько оцените его?", "");
+        }
+        personalMovieDB.movies[a] = b;
+    }
+}
+//rememberMyFilms();
 
-const str = "Hello world";
-console.log(str.length);
-
-const array = [1, 2, 4, 5];
-console.log(array.length);
-
-//Методы
-
-console.log(str.toLocaleUpperCase());
-console.log(str.toLocaleLowerCase());
-
-const fruit = "Some fruit";
-console.log(fruit.indexOf("fruit"));
-console.log(fruit.indexOf("z"));  //нет значения
-
-const logg = "Hello world";
-console.log(logg.slice(6, 11));  //запись "ДО" не включительна 
-console.log(logg.slice(6));
-console.log(logg.slice(-5, -1));
-
-console.log(logg.substring(6, 11));
-
-console.log(logg.substr(6, 5));
+function writeYourGenres (genre) {
+    for (let i = 1; i <= 3; i++) {
+        genre[i-1] = prompt(`Ваш любимый жанр под номером ${i}`);
+    }
+}
+writeYourGenres(personalMovieDB.genres);
 
 
-const num = 12.99;
-console.log(Math.round(num));
-console.log(Math.floor(num));
+function detectPersonalLevel() {
+    if (personalMovieDB.count < 10) {
+        console.log("Просмотрено довольно мало фильмов");
+    } else if (personalMovieDB.count < 30 && personalMovieDB.count >= 10) {
+        console.log("Вы классический зритель");
+    } else if (personalMovieDB.count >= 30) {
+        console.log("Вы киноман");
+    } else {
+        console.log("Ошибка");
+    }
+}
+detectPersonalLevel();
 
-const test = "12.2px";
-console.log(parseInt(test));
-console.log(parseFloat(test));
+function showMyDB(hidden) {
+    if (!hidden) {
+        console.log(personalMovieDB);
+    }
+}
+showMyDB(personalMovieDB.privat);
