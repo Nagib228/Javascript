@@ -79,3 +79,38 @@ method.makeTest();
 
 const {border, bg} = options.colors;
 console.log(border);
+
+
+// Массивы и псевдомассивы
+
+const arr = [1, 2, 3, 6, 8];
+arr.pop();
+console.log(arr);  // Удаляет последний
+
+arr.push(10);
+console.log(arr);
+
+/* for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
+ */
+for (let value of arr) {
+    console.log(value);
+}
+
+arr.forEach(function (item, i, arr) {
+    console.log(`${i}: ${item} в массиве ${arr}`);
+});
+
+const str = prompt("","");
+const products = str.split(", ");
+console.log(products);
+console.log(products.join('; '));
+console.log(products.sort());
+
+const array = [2, 13, 26, 8, 10];
+array.sort(compareNum);
+console.log(array);
+function compareNum(a, b) {
+    return a-b;
+}
