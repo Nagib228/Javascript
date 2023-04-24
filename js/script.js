@@ -1,116 +1,88 @@
 "use strict";
 
-function first() {
-    setTimeout(function() {
-        console.log(1);
-    }, 500);
-}
+let a = 5,
+    b = a;
+b = b + 5;
+console.log(a);
+console.log(b);
 
-function second() {
-    console.log(2);
-}
-
-first();
-second();
-
-function learnJS (lang, callback) {
-    console.log(`Я учу: ${lang}`);
-    callback();
-}
-
-learnJS(`Javascript`, function() {
-    console.log(`Я прошёл этот урок!`);
-});
-
-function done () {
-    console.log(`Я прошёл этот урок!`);
-}
-
-learnJS(`JavaScript`, done);  //done не вызываем,а обращаемся к имени
-
-// Объекты, деструктуризация объектов
-
-//const obj = new Object();
-const options = {
-    name: 'test',
-    width: 1024,
-    height: 1024,
-    colors: {
-        border: "black",
-        bg: "red"
-    }
+/* 
+const obj = {
+    a: 5,
+    b: 1
 };
-console.log(options.name);
-
-/* delete options.name;
-console.log(options); */
-
-
-for (let key in options) {
-    if (typeof(options[key]) === 'object') {
-        for (let i in options[key]) {
-            console.log(`Свойство ${i} имеет значение ${options[key][i]}`);
-        }
-    } else {
-        console.log(`Свойство ${key} имеет значение ${options[key]}`);
-    }
-}
-
-console.log(options["colors"]["border"]);
-
-let counter = 0;
-for (let j in options) {
-    counter++;
-}
-console.log(counter);
-
-console.log(Object.keys(options));   //Создаём массив из ключей объекта
-console.log(Object.keys(options).length); //количество ключей первой вложенности
-
-
-const method = {
-    makeTest: function () {
-        console.log("Test");
-    }
-};
-method.makeTest();
-
-//Деструктуризация
-
-const {border, bg} = options.colors;
-console.log(border);
-
-
-// Массивы и псевдомассивы
-
-const arr = [1, 2, 3, 6, 8];
-arr.pop();
-console.log(arr);  // Удаляет последний
-
-arr.push(10);
-console.log(arr);
-
-/* for (let i = 0; i < arr.length; i++) {
-    console.log(arr[i]);
-}
+const copy = obj;
+copy.a = 10;
+console.log(copy);
+console.log(obj);
  */
-for (let value of arr) {
-    console.log(value);
+
+function copy(mainObj) {
+    let objCopy = {};
+    for (let key in mainObj) {
+        objCopy[key] = mainObj[key];
+    }
+    return objCopy;
 }
 
-arr.forEach(function (item, i, arr) {
-    console.log(`${i}: ${item} в массиве ${arr}`);
-});
+const numbers = {
+    a: 2,
+    b: 5,
+    c: {
+        x: 7,
+        y: 4
+    }
+};
 
-const str = prompt("","");
-const products = str.split(", ");
-console.log(products);
-console.log(products.join('; '));
-console.log(products.sort());
+const newNumbers = copy(numbers);
+newNumbers.a = 10;
+/* console.log(newNumbers);
+console.log(numbers);
+ */
+newNumbers.c.x = 10;
+console.log(newNumbers);
+console.log(numbers);
 
-const array = [2, 13, 26, 8, 10];
-array.sort(compareNum);
+
+const add = {
+    d: 17,
+    e: 20
+};
+console.log(Object.assign(numbers, add));
+
+
+const oldArray = ['a', 'b', 'c'];
+const newArray = oldArray.slice();
+newArray[1] = 'gfjlsgdfjg';
+console.log(newArray);
+console.log(oldArray);
+
+//Spread оператор
+
+const video = ['YouTube', 'Vimeo', 'RuTube'],
+    blogs = ['WordPress', 'LiveJournal', 'Blogger'],
+    internet = [...video, ...blogs, 'VK', 'FaceBook'];
+console.log(internet);
+
+function log(a, b, c) {
+    console.log(a);
+    console.log(b);
+    console.log(c);
+}
+const num = [2, 5, 7];
+log(...num);
+
+const array = ["a", "b"];
+const newAAray = [...array];
+newAAray[0] = "ZHOPA";
 console.log(array);
-function compareNum(a, b) {
-    return a-b;
-}
+console.log(newAAray);
+
+const AUE = {
+    one: 1,
+    two: 2
+};
+const newAUE = {...AUE};
+newAUE.one = 228;
+console.log(AUE);
+console.log(newAUE);
