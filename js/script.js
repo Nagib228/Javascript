@@ -24,8 +24,8 @@ const personalMovieDB = {
             personalMovieDB.movies[a] = b;
         }
     },
-    writeYourGenres: function(genre) {
-        for (let i = 1; i <= 3;i++) {
+    writeYourGenres: function(/* genre */) {
+/*         for (let i = 1; i <= 3;i++) {
             genre[i-1] = prompt(`Ваш любимый жанр под номером ${i}`);
             while (genre[i-1] == "" || genre[i-1] == null) {
                 genre[i-1] = prompt(`Ваш любимый жанр под номером ${i}`);
@@ -33,7 +33,20 @@ const personalMovieDB = {
         }
         personalMovieDB.genres.forEach((item, i) => {
             console.log(`Любимы жанр ${i+1} - это ${item}`);
-        });
+        }); */
+        for (let i = 1; i < 2; i++) {
+        let genres = prompt(`Введите ваши любимые жанры через запятую`).toLocaleLowerCase();
+        if (genres === '' || genres == null) {
+            console.log(`Вы ввели некорректно`);
+            i--;
+        } else{
+            personalMovieDB.genres = genres.split(', '); //из строки в массив
+            personalMovieDB.genres.sort();
+        }
+        personalMovieDB.genres.forEach((item, i) => {
+            console.log(`Любимы жанр ${i+1} - это ${item}`);
+        }); 
+    }
     },
     detectPersonalLevel() {
         if (personalMovieDB.count < 10) {
@@ -62,7 +75,7 @@ const personalMovieDB = {
 
 personalMovieDB.start();
 //personalMovieDB.rememberMyFilms();
-personalMovieDB.writeYourGenres(personalMovieDB.genres);
+personalMovieDB.writeYourGenres();
 personalMovieDB.detectPersonalLevel();
 personalMovieDB.toggleVisibleMyDB();
 personalMovieDB.showMyDB(personalMovieDB.privat);
