@@ -1,88 +1,32 @@
 "use strict";
 
-let a = 5,
-    b = a;
-b = b + 5;
-console.log(a);
-console.log(b);
+//  Основы ООП
 
-/* 
-const obj = {
-    a: 5,
-    b: 1
-};
-const copy = obj;
-copy.a = 10;
-console.log(copy);
-console.log(obj);
- */
+let str = "some";
+let strObj = new String(str);
+console.log(typeof(str));
+console.log(typeof(strObj));
 
-function copy(mainObj) {
-    let objCopy = {};
-    for (let key in mainObj) {
-        objCopy[key] = mainObj[key];
-    }
-    return objCopy;
-}
+console.dir([1, 2, 3]);
 
-const numbers = {
-    a: 2,
-    b: 5,
-    c: {
-        x: 7,
-        y: 4
+const soldier = {
+    health: 400,
+    armor: 100,
+    sayHello: function() {
+        console.log("Hello");
     }
 };
 
-const newNumbers = copy(numbers);
-newNumbers.a = 10;
-/* console.log(newNumbers);
-console.log(numbers);
- */
-newNumbers.c.x = 10;
-console.log(newNumbers);
-console.log(numbers);
+/* const John = {
+    health: 100
+}; */
 
+//John.__proto__ = soldier;
 
-const add = {
-    d: 17,
-    e: 20
-};
-console.log(Object.assign(numbers, add));
+//Object.setPrototypeOf(John, soldier);
+const John = Object.create(soldier);
 
+console.log(John);
+console.log(John.armor);
 
-const oldArray = ['a', 'b', 'c'];
-const newArray = oldArray.slice();
-newArray[1] = 'gfjlsgdfjg';
-console.log(newArray);
-console.log(oldArray);
-
-//Spread оператор
-
-const video = ['YouTube', 'Vimeo', 'RuTube'],
-    blogs = ['WordPress', 'LiveJournal', 'Blogger'],
-    internet = [...video, ...blogs, 'VK', 'FaceBook'];
-console.log(internet);
-
-function log(a, b, c) {
-    console.log(a);
-    console.log(b);
-    console.log(c);
-}
-const num = [2, 5, 7];
-log(...num);
-
-const array = ["a", "b"];
-const newAAray = [...array];
-newAAray[0] = "ZHOPA";
-console.log(array);
-console.log(newAAray);
-
-const AUE = {
-    one: 1,
-    two: 2
-};
-const newAUE = {...AUE};
-newAUE.one = 228;
-console.log(AUE);
-console.log(newAUE);
+John.sayHello();
