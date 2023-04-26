@@ -31,4 +31,3 @@ switcher = {};      //
 switcher = 'Yap';  // TRUE
 console.log(typeof(Boolean('4')));
 console.log(typeof(!!"Oleg is here and he's the best student in the world"));   // !! - Перевод в Boolean
-
