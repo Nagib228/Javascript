@@ -63,7 +63,7 @@ div.innerHTML = "<h1>Hello, my friend</h1>";
 
 div.insertAdjacentHTML("afterend", "<h2>Horse</h2>");
 
-// The same
+// The same 
 /* 
 const wrapper = document.querySelector('.wrapper'),
       hearts = wrapper.querySelectorAll('.heart'),
