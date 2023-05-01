@@ -33,4 +33,4 @@ for (let node of document.body.childNodes) {
         continue;
     }
     console.log(node);
-}    // Вывод всех детей body без нодов (пропускаем в условии)
+}    // Вывод всех детей body без нодов (пропускаем в условии) 
