@@ -1,26 +1,36 @@
 "use strict";
 
-const btn = document.querySelector('button');
-/* btn.addEventListener('click', () => {
-    alert("Башкирия на связи");
-});
- */
-btn.addEventListener('mouseenter', (event) => {
-    //console.log("Возьми мобилу, если она не в ....");
-    //console.log(event);
-    console.log(event.target);
-    //event.target.remove();
-});
+// DOM Navigation
 
-const deleteElement = (e) => {
-    e.target.remove();
-};
+//console.log(document.body);
+//console.log(document.documentElement);  
+//console.log(document.body.childNodes);
 
-btn.addEventListener('click', deleteElement, {once: true});
-btn.removeEventListener('click', deleteElement);
+console.log(document.body.firstChild);  //перенос строки #text
+console.log(document.body.lastChild);   //script
 
-const link = document.querySelector('a');
-link.addEventListener('click', (e) => {
-    e.preventDefault();
-    console.log(e.target);
-});
+console.log(document.querySelector('#current').parentNode);             //first
+console.log(document.querySelector('#current').parentNode.parentNode);  //wrapper
+
+// Data attributes
+
+//console.log(document.querySelector('[data-current="3"]'));  //по атрибуту <li data-current></li>
+//console.log(document.querySelector('[data-current="3"]').nextSibling);   //следующая нода text
+//console.log(document.querySelector('[data-current="3"]').previousSibling); //предыдущий #text
+
+console.log(document.querySelector('[data-current="3"]').nextElementSibling);  //следующий элемент (не нода)
+console.log(document.querySelector('[data-current="3"]').previousElementSibling); //предыдущий элемент
+
+console.log(document.querySelector('#current').parentElement);  //получаем элемент родителя
+
+console.log(document.body.firstElementChild);//первый эелмент ребёнок
+console.log(document.body.lastElementChild); //последний элемент ребёнок (не ноды)
+
+// Аналог childNodes (Псевдомассива)
+
+for (let node of document.body.childNodes) {
+    if (node.nodeName == '#text') {
+        continue;
+    }
+    console.log(node);
+}    // Вывод всех детей body без нодов (пропускаем в условии)
