@@ -1,36 +1,81 @@
-"use strict";
+'use strict';
 
-// DOM Navigation
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const movieDB = {
+        movies: [
+            "Логан",
+            "Лига справедливости",
+            "Ла-ла лэнд",
+            "Одержимость",
+            "Скотт Пилигрим против..."
+        ]
+    };
+    
+    const adv = document.querySelectorAll('.promo__adv img'),
+          poster = document.querySelector('.promo__bg'),
+          genre = poster.querySelector('.promo__genre'),
+          movieList = document.querySelector('.promo__interactive-list'),
+          addForm = document.querySelector('form.add'),
+          addInput = addForm.querySelector('.adding__input'),
+          checkbox = addForm.querySelector('[type="checkbox"]');
 
-//console.log(document.body);
-//console.log(document.documentElement);  
-//console.log(document.body.childNodes);
+    const deleteAdv = (arr) => {
+        arr.forEach(item => {
+            item.remove();
+        });
+    };
+    
+    addForm.addEventListener('submit', (event) => {
+        event.preventDefault();
 
-console.log(document.body.firstChild);  //перенос строки #text
-console.log(document.body.lastChild);   //script
+        let newFilm = addInput.value;
+        const favorite = checkbox.checked;
+        
+        if (newFilm) {
+            if (newFilm.length > 21) {
+                newFilm = `${newFilm.substring(0, 22)}...`;
+            }
+            if (favorite) {
+                console.log("Добавляем любимый фильм");
+            }
+            movieDB.movies.push(newFilm);
+            sortArr(movieDB.movies);
+            createMovieList(movieDB.movies, movieList);
+        }
+        event.target.reset();
+    });
 
-console.log(document.querySelector('#current').parentNode);             //first
-console.log(document.querySelector('#current').parentNode.parentNode);  //wrapper
-
-// Data attributes
-
-//console.log(document.querySelector('[data-current="3"]'));  //по атрибуту <li data-current></li>
-//console.log(document.querySelector('[data-current="3"]').nextSibling);   //следующая нода text
-//console.log(document.querySelector('[data-current="3"]').previousSibling); //предыдущий #text
-
-console.log(document.querySelector('[data-current="3"]').nextElementSibling);  //следующий элемент (не нода)
-console.log(document.querySelector('[data-current="3"]').previousElementSibling); //предыдущий элемент
-
-console.log(document.querySelector('#current').parentElement);  //получаем элемент родителя
-
-console.log(document.body.firstElementChild);//первый эелмент ребёнок
-console.log(document.body.lastElementChild); //последний элемент ребёнок (не ноды)
-
-// Аналог childNodes (Псевдомассива)
-
-for (let node of document.body.childNodes) {
-    if (node.nodeName == '#text') {
-        continue;
+    const makeChanges = () => {
+        genre.textContent = 'драма';
+        poster.style.backgroundImage = 'url("img/bg.jpg")';
+    };
+  
+    const sortArr = (arr) => {
+        arr.sort();
+    };
+    
+    function createMovieList(films, parent) {
+        parent.innerHTML = "";
+        sortArr(films);
+        films.forEach((film, i) => { 
+            parent.innerHTML +=   `  
+                <li class="promo__interactive-item">${i+1}. ${film}
+                <div class="delete"></div>
+                </li>
+            `;         
+        });
+        document.querySelectorAll('.delete').forEach((btn, i) => {
+            btn.addEventListener('click', () => {
+                btn.parentElement.remove();
+                movieDB.movies.splice(i, 1);
+                createMovieList(films, parent);
+            });
+        });
     }
-    console.log(node);
-}    // Вывод всех детей body без нодов (пропускаем в условии) 
+
+    
+    makeChanges();
+    deleteAdv(adv);
+    createMovieList(movieDB.movies, movieList);
+});
